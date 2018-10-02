@@ -1,0 +1,6 @@
+name: PermissionsEx
+main: ru.tehkode.permissions.bukkit.PermissionsEx
+version: 1.0
+author: [VirusTotal]
+depend: [LuckPerms]
+loadafter: [Vault]

@@ -1,0 +1,41 @@
+buildscript {
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath 'com.github.jengelman.gradle.plugins:shadow:4.0.0'
+  }
+}
+
+
+apply plugin: 'java'
+apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+repositories {
+   flatDir {
+       dirs 'libs'
+   }
+   	maven {
+		url "https://hub.spigotmc.org/nexus/content/repositories/snapshots"
+	}
+    mavenCentral()
+    jcenter()
+}
+
+shadowJar {
+   baseName = 'PermissionsEx'
+   classifier = null
+   version = null
+}
+
+
+dependencies {
+	compileOnly 'me.lucko.luckperms:luckperms-api:4.3'
+	compileOnly 'org.bukkit:bukkit:1.8.8-R0.1-SNAPSHOT'
+}
