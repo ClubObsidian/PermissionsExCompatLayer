@@ -19,6 +19,8 @@
  */
 package ru.tehkode.permissions;
 
+import java.util.UUID;
+
 import org.bukkit.entity.Player;
 
 /**
@@ -26,7 +28,17 @@ import org.bukkit.entity.Player;
  */
 public class PermissionManager {
 
-
+	/**
+	 * Return object of specified player
+	 *
+	 * @param uuid uuid object
+	 * @return PermissionUser instance
+	 */
+	public PermissionUser getUser(UUID uuid)
+	{
+		return new PermissionUser(uuid);
+	}
+	
 	/**
 	 * Return object of specified player
 	 *
@@ -35,6 +47,6 @@ public class PermissionManager {
 	 */
 	public PermissionUser getUser(Player player) 
 	{
-		return new PermissionUser(player.getUniqueId());
+		return this.getUser(player.getUniqueId());
 	}
 }

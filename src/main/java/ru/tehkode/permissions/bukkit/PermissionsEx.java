@@ -19,6 +19,7 @@
  */
 package ru.tehkode.permissions.bukkit;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
@@ -40,12 +41,13 @@ public class PermissionsEx extends JavaPlugin {
 	private static LuckPermsApi luckPermsApi;
 	
 	private PermissionManager permissionManager;
-	
+
 	@Override
 	public void onEnable()
-	{
+	{	
 		RegisteredServiceProvider<LuckPermsApi> provider = Bukkit.getServicesManager().getRegistration(LuckPermsApi.class);
-		if (provider != null) {
+		if (provider != null) 
+		{
 		    luckPermsApi = provider.getProvider();
 		}
 		else
@@ -65,6 +67,11 @@ public class PermissionsEx extends JavaPlugin {
     public PermissionManager getPermissionsManager() 
     {
         return this.permissionManager;
+    }
+    
+    public static PermissionUser getUser(UUID uuid) 
+    {
+        return getPermissionManager().getUser(uuid);
     }
 
     public static PermissionUser getUser(Player player) 

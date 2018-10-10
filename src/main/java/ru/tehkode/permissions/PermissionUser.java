@@ -193,4 +193,21 @@ public class PermissionUser extends PermissionEntity {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	public boolean has(String permission)
+	{
+		try 
+		{
+			LuckPermsApi api = PermissionsEx.getLuckPermsApi();
+			UserManager userManager = api.getUserManager();
+			User user = userManager.loadUser(this.uuid).get();
+			return user.hasPermission(api.buildNode(permission).build()).asBoolean();
+		} 
+		catch (InterruptedException | ExecutionException e) 
+		{
+			e.printStackTrace();
+		}
+		return false;
+	}
 }
