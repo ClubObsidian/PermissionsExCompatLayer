@@ -27,11 +27,16 @@ import me.lucko.luckperms.api.manager.UserManager;
 
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
+
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 /**
  * @author t3hk0d3, virustotal
@@ -44,6 +49,21 @@ public class PermissionUser extends PermissionEntity {
 		this.uuid = uuid;
 	}
 
+	public String getName()
+	{
+		Player player = Bukkit.getServer().getPlayer(this.uuid);
+		if(player == null)
+			return null;
+		
+		return player.getName();
+	}
+	
+	public Type getType() 
+	{
+		return Type.USER;
+	}
+	
+	
 	/**
 	 * Add user to group
 	 *
@@ -136,6 +156,22 @@ public class PermissionUser extends PermissionEntity {
 		return permissions;
 	}
 
+	/**
+	 * Get group for this user, global inheritance only
+	 *
+	 * @return
+	 */
+	public PermissionGroup[] getGroups()
+	{
+		String[] groupNames = this.getGroupsNames();
+		PermissionGroup[] groups = new PermissionGroup[groupNames.length];
+		for(int i = 0; i < groups.length; i++)
+		{
+			groups[i] = new PermissionGroup(groupNames[i]);
+		}
+		return groups;
+	}
+	
 	/**
 	 * Get group names
 	 *

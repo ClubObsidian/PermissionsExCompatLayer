@@ -1,8 +1,8 @@
 /*
  * PermissionsEx - Permissions plugin for Bukkit
  * Copyright (C) 2011 t3hk0d3 http://www.tehkode.ru
- * Copyright (C) 2018 ClubObsidian https://www.clubobsidian.com
- * 
+  * Copyright (C) 2018 ClubObsidian https://www.clubobsidian.com
+ *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; either version 2
@@ -19,17 +19,24 @@
  */
 package ru.tehkode.permissions;
 
-/**
- * @author t3hk0d3, virustotal
- */
-public abstract class PermissionEntity {
-	
-	
-	
-    public static enum Type
+public class PermissionGroup extends PermissionEntity implements Comparable<PermissionGroup>
+{
+    private String groupName;
+    public PermissionGroup(final String groupName) 
     {
-        USER, 
-        GROUP;
+    	this.groupName = groupName;
     }
-	
+    
+    public String getGroupName()
+    {
+    	return this.groupName;
+    }
+
+    //Unimplemented
+	@Override
+	public int compareTo(PermissionGroup o) 
+	{
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
